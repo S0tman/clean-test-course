@@ -35,9 +35,10 @@ describe('Test Order', () => {
         <Order />
       </OrderContext.Provider>
     );
-    //Assert: replace the return true.
+    //Assert: verify the delivery fee is rendered.
     await waitFor(() => {
-      return true;
+      const deliveryFeeRow = screen.getByText('Delivery Fee').parentElement;
+      expect(deliveryFeeRow).toHaveTextContent('$2.50');
     });
   });
 
