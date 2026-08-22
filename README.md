@@ -126,13 +126,19 @@ The front end was originally created using [Create React App](https://create-rea
 
 ## Running Back End Unit Tests
 
-1.  Install the test dependencies.
+1.  From the repository's `backend` directory, activate the backend environment
+    and install the test dependencies. The test suite only uses
+    `django-mock-queries`, so install it without its optional `model-bakery`
+    dependency; the latest `model-bakery` requires a newer Django than this
+    project uses.
 
-        pip install pytest django_mock_queries six coverage
+        source hangry_api/env/bin/activate
+        pip install pytest six coverage
+        pip install --no-deps django-mock-queries==2.3.0
 
 2.  Run the tests.
 
-        coverage run -m --source=./hangry_api pytest
+        coverage run --source=hangry_api/api -m pytest hangry_api/tests
 
     > **Note:** The server should not be running when you run tests.
 
